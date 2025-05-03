@@ -19,7 +19,6 @@ DEP = dep
 TARGET = spi_test
 
 # Tools
-VBUILD = vbuild
 C = gcc
 CPP = g++
 LINKER = g++
@@ -73,9 +72,6 @@ $(DEP)/%.d: ;
 install: $(TARGET)
 	cp $(TARGET) /usr/local/bin/wctl
 	cp wctl.cfg /usr/local/bin/wctl
-
-version:
-	$(VBUILD) -incfile wctl.ver -template version.c.template -out $(SOURCE)/version.c -major $(MAJOR_VERSION) -minor $(MINOR_VERSION)
 
 clean:
 	rm -r $(BUILD)

@@ -61,7 +61,7 @@ static nrfcfg & getRadioConfig() {
     radioConfig.channel = cfg.getValueAsInteger("radio.channel");
 
     strncpy(szLocalAddress, cfg.getValue("radio.localaddress").c_str(), 31);
-    strncpy(szRemoteAddress, cfg.getValue("radio.remoteaddress").c_str(), 31);
+    //strncpy(szRemoteAddress, cfg.getValue("radio.remoteaddress").c_str(), 31);
 
     radioConfig.localAddress = szLocalAddress;
     radioConfig.remoteAddress = szRemoteAddress;
