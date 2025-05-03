@@ -154,14 +154,14 @@ int main(int argc, char ** argv) {
 		exit(-1);
 	}
 
-    while (1) {
-		nrf24l01 & radio = nrf24l01::getInstance();
+	nrf24l01 & radio = nrf24l01::getInstance();
 
-		nrfcfg radioConfig = getRadioConfig();
+	nrfcfg radioConfig = getRadioConfig();
 
-		radio.configureSPI(NRF_SPI_FREQUENCY, NRF_SPI_CE_PIN);
-		radio.open(radioConfig);
+	radio.configureSPI(NRF_SPI_FREQUENCY, NRF_SPI_CE_PIN);
+	radio.open(radioConfig);
 
+	while (1) {
 		while (radio.isDataReady()) {
             log.logDebug("NRF24L01 has received data...");
             uint8_t * payload = radio.readPayload();
