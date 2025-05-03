@@ -77,15 +77,12 @@ int nrf24l01::writeRegisterDebug(int registerID, uint8_t * buffer, uint16_t numB
 
     int numBytesTransferred = writeRegister(registerID, buffer, numBytes);
 
-    uint8_t value = buffer[0];
-
-    log.logDebug("Written register 0x%02X as 0x%02X", registerID, value);
-    value = 0x00;
+    log.logDebug("Written register 0x%02X as 0x%02X", registerID, buffer[0]);
+    buffer[0] = 0x00;
 
     readRegister(registerID, buffer, numBytes);
-    value = buffer[0];
 
-    log.logDebug("Read register 0x%02X as 0x%02X", registerID, value);
+    log.logDebug("Read register 0x%02X as 0x%02X", registerID, buffer[0]);
 
     return numBytesTransferred;
 }
