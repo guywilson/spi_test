@@ -72,6 +72,24 @@ int nrf24l01::writeRegister(int registerID, uint8_t * buffer, uint16_t numBytes)
     return numBytesTransferred;
 }
 
+int nrf24l01::writeRegisterDebug(int registerID, uint8_t * buffer, uint16_t numBytes) {
+    logger & log = logger::getInstance();
+
+    int numBytesTransferred = writeRegister(registerID, buffer, numBytes);
+
+    uint8_t value = buffer[0];
+
+    log.logDebug("Written register 0x%02X as 0x%02X", registerID, value);
+    value = 0x00;
+
+    readRegister(registerID, buffer, numBytes);
+    value = buffer[0];
+
+    log.logDebug("Read register 0x%02X as 0x%02X", registerID, value);
+
+    return numBytesTransferred;
+}
+
 void nrf24l01::rfPowerDown() {
     chipDisable();
  
@@ -127,7 +145,7 @@ void nrf24l01::rfFlushTx() {
 
 void nrf24l01::setRFChannel(int channel) {
     uint8_t registerRFChannel = (uint8_t)(channel & 0xFF);
-    writeRegister(NRF24L01_REG_RF_CH, &registerRFChannel, 1);
+    writeRegisterDebug(NRF24L01_REG_RF_CH, &registerRFChannel, 1);
 }
 
 void nrf24l01::setRFPayloadLength(int payloadLength, bool isACK) {
@@ -168,7 +186,7 @@ void nrf24l01::rfSetup(nrfcfg::data_rate & dataRate, nrfcfg::rf_power & rfPower,
                         rfPower | 
                         (isLNAGainOn ? NRF24L01_RF_SETUP_RF_LNA_GAIN_ON : NRF24L01_RF_SETUP_RF_LNA_GAIN_OFF);
 
-    writeRegister(NRF24L01_REG_RF_SETUP, &registerRFSetup, 1);
+    writeRegisterDebug(NRF24L01_REG_RF_SETUP, &registerRFSetup, 1);
 }
 
 int nrf24l01::padAddress(uint8_t * buffer, int actualAddressLength) {
@@ -308,18 +326,18 @@ void nrf24l01::open(nrfcfg & cfg) {
     rfPowerDown();
 
     uint8_t registerSetupRetr = 0x00;
-    writeRegister(NRF24L01_REG_SETUP_RETR, &registerSetupRetr, 1);
+    writeRegisterDebug(NRF24L01_REG_SETUP_RETR, &registerSetupRetr, 1);
 
     rfSetup(cfg.airDataRate, cfg.rfPower, cfg.lnaGainOn);
 
     uint8_t registerEnableAA = 0x00;
-    writeRegister(NRF24L01_REG_EN_AA, &registerEnableAA, 1);
+    writeRegisterDebug(NRF24L01_REG_EN_AA, &registerEnableAA, 1);
 
     uint8_t registerFeature = 
                 NRF24L01_FEATURE_EN_DYN_PAYLOAD_LEN | 
                 NRF24L01_FEATURE_EN_PAYLOAD_WITH_ACK;
 
-    writeRegister(NRF24L01_REG_FEATURE, &registerFeature, 1);
+    writeRegisterDebug(NRF24L01_REG_FEATURE, &registerFeature, 1);
     
     setLocalAddress(cfg.localAddress);
     setRemoteAddress(cfg.remoteAddress);

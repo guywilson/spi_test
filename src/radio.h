@@ -239,6 +239,7 @@ class nrf24l01 {
 
         int readRegister(int registerID, uint8_t * buffer, uint16_t numBytes);
         int writeRegister(int registerID, uint8_t * buffer, uint16_t numBytes);
+        int writeRegisterDebug(int registerID, uint8_t * buffer, uint16_t numBytes);
 
         void chipEnable();
         void chipDisable();
