@@ -64,7 +64,7 @@ static nrfcfg & getRadioConfig() {
     //strncpy(szRemoteAddress, cfg.getValue("radio.remoteaddress").c_str(), 31);
 
     radioConfig.localAddress = szLocalAddress;
-    radioConfig.remoteAddress = szRemoteAddress;
+    // radioConfig.remoteAddress = szRemoteAddress;
     radioConfig.lnaGainOn = false;
 
     radioConfig.validate();

@@ -314,7 +314,7 @@ void nrf24l01::open(nrfcfg & cfg) {
 
     log.logInfo("Got RF channel: %d", cfg.channel);
     log.logInfo("Got local address '%s'", cfg.localAddress);
-    log.logInfo("Got remote address '%s'", cfg.remoteAddress);
+    // log.logInfo("Got remote address '%s'", cfg.remoteAddress);
 
     setRFChannel(cfg.channel);
     setRFPayloadLength(cfg.payloadLength, false);
