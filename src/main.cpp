@@ -53,7 +53,7 @@ static nrfcfg::data_rate getDataRate() {
 static nrfcfg & getRadioConfig() {
     static nrfcfg radioConfig;
     static char szLocalAddress[32];
-    static char szRemoteAddress[32];
+	static char szRemoteAddress[32];
 
     cfgmgr & cfg = cfgmgr::getInstance();
 
@@ -61,8 +61,10 @@ static nrfcfg & getRadioConfig() {
     radioConfig.channel = cfg.getValueAsInteger("radio.channel");
 
     strncpy(szLocalAddress, cfg.getValue("radio.localaddress").c_str(), 31);
+    strncpy(szRemoteAddress, cfg.getValue("radio.remoteaddress").c_str(), 31);
 
     radioConfig.localAddress = szLocalAddress;
+	radioConfig.remoteAddress = szRemoteAddress;
     radioConfig.lnaGainOn = false;
 
     radioConfig.validate();
