@@ -11,7 +11,7 @@
 using namespace std;
 
 void nrfcfg::validate() {
-    if (channel < 1 || channel > 39) {
+    if (channel < 0 || channel > 124) {
         throw nrf24_error(nrf24_error::buildMsg("Invalid RF channel specified: %d", channel));
     }
 
