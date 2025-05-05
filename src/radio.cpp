@@ -98,6 +98,9 @@ void nrf24l01::rfPowerUpRx() {
     chipDisable();
  
     uint8_t registerConfig = 
+                NRF24L01_CFG_MASK_MAX_RT |
+                NRF24L01_CFG_MASK_RX_DR |
+                NRF24L01_CFG_MASK_TX_DS |
                 NRF24L01_CFG_ENABLE_CRC | 
                 (nrfConfig.numCRCBytes == 1 ? NRF24L01_CFG_CRC_1_BYTE : NRF24L01_CFG_CRC_2_BYTE) | 
                 NRF24L01_CFG_POWER_UP | 
