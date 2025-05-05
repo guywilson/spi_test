@@ -333,11 +333,9 @@ void nrf24l01::open(nrfcfg & cfg) {
     uint8_t registerEnableAA = 0x00;
     writeRegisterDebug(NRF24L01_REG_EN_AA, &registerEnableAA, 1);
 
-    uint8_t registerFeature = 
-                NRF24L01_FEATURE_EN_DYN_PAYLOAD_LEN | 
-                NRF24L01_FEATURE_EN_PAYLOAD_WITH_ACK;
+    uint8_t registerFeature = 0x00;
 
-    writeRegister(NRF24L01_REG_FEATURE, &registerFeature, 1);
+    writeRegisterDebug(NRF24L01_REG_FEATURE, &registerFeature, 1);
     
     setLocalAddress(cfg.localAddress);
     setRemoteAddress(cfg.remoteAddress);
