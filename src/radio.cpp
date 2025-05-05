@@ -334,7 +334,7 @@ void nrf24l01::open(nrfcfg & cfg) {
     writeRegisterDebug(NRF24L01_REG_FEATURE, &registerFeature, 1);
     
     setLocalAddress(cfg.localAddress);
-    setRemoteAddress(cfg.remoteAddress);
+    // setRemoteAddress(cfg.remoteAddress);
 
     rfFlushRx();
     rfFlushTx();
