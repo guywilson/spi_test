@@ -43,7 +43,7 @@ LINK.o = $(LINKER) $(STDLIBS) -o $@
 CSRCFILES = $(wildcard $(SOURCE)/*.c)
 CPPSRCFILES = $(wildcard $(SOURCE)/*.cpp)
 OBJFILES = $(patsubst $(SOURCE)/%.c, $(BUILD)/%.o, $(CSRCFILES)) $(patsubst $(SOURCE)/%.cpp, $(BUILD)/%.o, $(CPPSRCFILES))
-DEPFILES = $(patsubst $(SOURCE)/%.c, $(DEP)/%.d, $(CSRCFILES))
+DEPFILES = $(patsubst $(SOURCE)/%.c, $(DEP)/%.d, $(CSRCFILES)) $(patsubst $(SOURCE)/%.cpp, $(DEP)/%.d, $(CPPSRCFILES))
 
 all: $(TARGET)
 

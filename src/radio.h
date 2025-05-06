@@ -126,7 +126,7 @@ using namespace std;
 
 #define NRF_SPI_DEVICE                              0
 #define NRF_SPI_CHANNEL                             0
-#define NRF_SPI_FREQUENCY                           400000U
+#define NRF_SPI_FREQUENCY                           1000000U
 #define NRF_SPI_CE_PIN                              25
 
 class nrf24_error : public exception {
